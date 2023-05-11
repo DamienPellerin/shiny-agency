@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Survey from './pages/Survey/'
 import Header from './components/Header'
+import Results from './pages/Results'
+import Freelances from './pages/Freelances'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,6 +14,8 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/survey" element={<Survey />} />
+        <Route path="/results" element={<Results />} />
+        <Route path="/freelances" element={<Freelances />} />
       </Routes>
     </Router>
   </React.StrictMode>,
