@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import DefaultPicture from '/Users/damien/Desktop/shiny-agency/src/assets/profil.jpg'
 
 function Card({ label, title, picture }) {
   return (
@@ -11,9 +12,15 @@ function Card({ label, title, picture }) {
 }
 
 Card.propTypes = {
-  label: PropTypes.string,
-  title: PropTypes.string,
-  picture: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+}
+
+Card.defaultProps = {
+  label: 'Mon label par défaut',
+  title: 'Mon titre par défaut',
+  picture: DefaultPicture,
 }
 
 export default Card
