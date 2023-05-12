@@ -5,6 +5,8 @@ import colors from '../../utils/style/colors.js'
 
 const CardWrapper = styled.div`
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   flex-direction: column;
   padding: 15px;
   background-color: ${colors.backgroundLight};
