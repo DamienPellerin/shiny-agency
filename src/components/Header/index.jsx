@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import styledComponents from 'styled-components'
 
-const StyledLink = styledComponents(Link)`
+const StyledLink = styledComponents(Link)`          
     padding: 15px;
     color: #8186a0;
     text-decoration: none;
