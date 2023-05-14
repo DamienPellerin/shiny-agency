@@ -1,26 +1,31 @@
 import { Link } from 'react-router-dom'
-import styledComponents from 'styled-components'
-import colors from '../../utils/style/colors.js'
+import styled from 'styled-components'
+import DarkLogo from '/Users/damien/Desktop/shiny-agency/src/assets/dark-logo.png'
+import { StyledLink } from '../../utils/style/atoms'
 
-const StyledLink = styledComponents(Link)`          
-    padding: 15px;
-    color: #8186a0;
-    text-decoration: none;
-    font-size: 18px;
-    ${(props) =>
-      props.$isFullLink &&
-      `color: white; border-radius: 30px; background-color: ${colors.primary};`}
+const NavBar = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+`
+
+const HomeLogo = styled.img`
+  height: 70px;
 `
 
 function Header() {
   return (
-    <nav>
+    <NavBar>
+      <Link to="/">
+        <HomeLogo src={DarkLogo} />
+      </Link>
       <StyledLink to="/">Accueil</StyledLink>
-      <StyledLink to="/survey" $isFullLink>
-        Questionnaire
+      <StyledLink to="/freelances">Profils</StyledLink>
+      <StyledLink to="/survey/1" $isFullLink>
+        Faire le test
       </StyledLink>
-      <StyledLink to="/freelances">Freelances</StyledLink>
-    </nav>
+    </NavBar>
   )
 }
 
