@@ -11,6 +11,6 @@ export const StyledLink = styled(Link)`
   ${(props) =>
     props.$isFullLink &&
     `color: white; 
-    border-radius: 25px; 
+    border-radius: 30px; 
     background-color: ${colors.primary};`}
 `
