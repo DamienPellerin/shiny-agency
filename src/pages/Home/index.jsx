@@ -9,12 +9,13 @@ const HomeWrapper = styled.div`
 `
 
 const HomeContainer = styled.div`
-  margin: 30px;
-  background-color: ${colors.background};
+  margin: 50px;
+  background-color: ${colors.backgroundLight};
   padding: 60px 90px;
   display: flex;
   flex-direction: row;
   max-width: 1200px;
+  width: 100%;
 `
 
 const LeftCol = styled.div`
