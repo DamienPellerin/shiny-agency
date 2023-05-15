@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import Survey from './pages/Survey/'
 import Header from './components/Header'
 import Results from './pages/Results'
+import Error from './components/Error'
+
 import Freelances from './pages/Freelances'
 import { createGlobalStyle } from 'styled-components'
 
@@ -24,6 +26,7 @@ ReactDOM.render(
         <Route path="/survey" element={<Survey />} />
         <Route path="/results" element={<Results />} />
         <Route path="/freelances" element={<Freelances />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </Router>
   </React.StrictMode>,
