@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { ThemeProvider } from './utils/context'
+import { SurveyProvider, ThemeProvider } from './utils/context'
 import GlobalStyle from './utils/style/GlobalStyle'
 import Home from './pages/Home'
 import Survey from './pages/Survey'
@@ -15,16 +15,18 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <ThemeProvider>
-        <GlobalStyle />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/survey/:questionNumber" element={<Survey />} />
-          <Route path="/results" element={<Results />} />
-          <Route path="/freelances" element={<Freelances />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-        <Footer />
+        <SurveyProvider>
+          <GlobalStyle />
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/survey/:questionNumber" element={<Survey />} />
+            <Route path="/results" element={<Results />} />
+            <Route path="/freelances" element={<Freelances />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+          <Footer />
+        </SurveyProvider>
       </ThemeProvider>
     </Router>
   </React.StrictMode>,
