@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
+import { Loader } from '/Users/damien/Desktop/react/shiny-agency/src/utils/style/atoms.js'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors.js'
 import { useEffect, useState } from 'react'
@@ -35,20 +35,34 @@ function Survey() {
   const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumberInt - 1
   const nextQuestionNumber = questionNumberInt + 1
   const [surveyData, setSurveyData] = useState({})
+  const [isDataLoading, setDataLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
-    fetch(`http://localhost:8000/survey`).then((response) =>
-      response
-        .json()
-        .then(({ surveyData }) => console.log(surveyData))
-        .catch((error) => console.log(error))
-    )
+    async function fetchSurvey() {
+      setDataLoading(true)
+      try {
+        const response = await fetch('http://localhost:8000/survey')
+        const { surveyData } = await response.json()
+        setSurveyData(surveyData)
+      } catch (err) {
+        console.log(error)
+        setError(true)
+      } finally {
+        setDataLoading(false)
+      }
+    }
+    fetchSurvey()
   }, [])
 
   return (
     <SurveyContainer>
       <QuestionTitle>Question {questionNumber}</QuestionTitle>
-      <QuestionContent>{surveyData[questionNumber]} </QuestionContent>
+      {isDataLoading ? (
+        <Loader />
+      ) : (
+        <QuestionContent>{surveyData[questionNumber]}</QuestionContent>
+      )}
       <LinkWrapper>
         <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
         {surveyData[questionNumberInt + 1] ? (
