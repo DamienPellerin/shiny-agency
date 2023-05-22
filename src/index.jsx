@@ -1,24 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { ThemeProvider } from './utils/context'
+import GlobalStyle from './utils/style/GlobalStyle'
 import Home from './pages/Home'
 import Survey from './pages/Survey'
 import Results from './pages/Results'
 import Freelances from './pages/Freelances'
 import Header from './components/Header'
 import Error from './components/Error'
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Footer from './components/Footer'
-
-const GlobalStyle = createGlobalStyle`
-    * {
-      font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    }
-
-    body {
-      margin: 0;
-    }
-`
 
 ReactDOM.render(
   <React.StrictMode>
