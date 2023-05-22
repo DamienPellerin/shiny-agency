@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import DarkLogo from '/Users/damien/Desktop/shiny-agency/src/assets/dark-logo.png'
+import DarkLogo from '/Users/damien/Desktop/react/shiny-agency/src/assets/dark-logo.png'
 import { StyledLink } from '../../utils/style/atoms'
 
 const HomeLogo = styled.img`

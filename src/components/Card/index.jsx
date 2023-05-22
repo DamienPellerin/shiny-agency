@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import DefaultPicture from '/Users/damien/Desktop/shiny-agency/src/assets/profil.jpg'
+import DefaultPicture from '/Users/damien/Desktop/react/shiny-agency/src/assets/profil.jpg'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors.js'
 
