@@ -1,7 +1,8 @@
-import DefaultPicture from '../../assets/profil.jpg'
 import Card from '../../components/Card'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors.js'
+import { useEffect, useState } from 'react'
+import { Loader } from '/Users/damien/Desktop/react/shiny-agency/src/utils/style/atoms.js'
 
 const Container = styled.div`
   display: flex;
@@ -27,41 +28,49 @@ const StyledSubtitle = styled.h3`
   color: ${colors.secondary};
 `
 
-const freelanceProfiles = [
-  {
-    name: 'Jane Doe',
-    jobTitle: 'Devops',
-    picture: DefaultPicture,
-  },
-  {
-    name: 'John Doe',
-    jobTitle: 'Developpeur frontend',
-    picture: DefaultPicture,
-  },
-  {
-    name: 'Jeanne Biche',
-    jobTitle: 'Développeuse Fullstack',
-    picture: DefaultPicture,
-  },
-]
-
 function Freelances() {
+  const [freelancersData, setFreelancersData] = useState([])
+  const [isDataLoading, setDataLoading] = useState(false)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    async function fetchFreelancers() {
+      setDataLoading(true)
+      try {
+        const response = await fetch('http://localhost:8000/freelances')
+        const { freelancersList } = await response.json()
+        setFreelancersData(freelancersList)
+      } catch (err) {
+        console.log(error)
+        setError(true)
+      } finally {
+        setDataLoading(false)
+      }
+    }
+    fetchFreelancers()
+  }, [])
+
   return (
     <Container>
       <StyledTitle>Trouvez votre prestataire </StyledTitle>
       <StyledSubtitle>
         Chez Shiny nous réunissons les meilleurs profils pour vous.
       </StyledSubtitle>
-      <CardsContainer>
-        {freelanceProfiles.map((profile, index) => (
-          <Card
-            key={`${profile.name}-${index}`}
-            label={profile.jobTitle}
-            picture={profile.picture}
-            title={profile.name}
-          />
-        ))}
-      </CardsContainer>
+      {isDataLoading ? (
+        <Loader />
+      ) : (
+        <CardsContainer>
+          {freelancersData &&
+            freelancersData.map((profile, index) => (
+              <Card
+                key={`${profile.name}-${index}`}
+                label={profile.job}
+                picture={profile.picture}
+                title={profile.name}
+              />
+            ))}
+        </CardsContainer>
+      )}
     </Container>
   )
 }
