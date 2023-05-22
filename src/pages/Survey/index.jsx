@@ -1,12 +1,13 @@
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 function Survey() {
   const { questionNumber } = useParams()
   const questionNumberInt = parseInt(questionNumber)
   const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumberInt - 1
   const nextQuestionNumber = questionNumberInt + 1
+  const [questions, setQuestions] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:8000/survey`).then((response) =>
