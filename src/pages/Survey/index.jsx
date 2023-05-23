@@ -1,8 +1,8 @@
+import React, { useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { Loader } from '/Users/damien/Desktop/react/shiny-agency/src/utils/style/atoms.js'
+import { Loader } from '../../utils/style/atoms'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors.js'
-import { useState, useContext } from 'react'
 import { SurveyContext } from '../../utils/context/index.jsx'
 import { useFetch } from '../../utils/hooks'
 
@@ -60,7 +60,7 @@ function Survey() {
   const questionNumberInt = parseInt(questionNumber)
   const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumberInt - 1
   const nextQuestionNumber = questionNumberInt + 1
-  const [isDataLoading, setDataLoading] = useState(false)
+
   const { saveAnswers, answers } = useContext(SurveyContext)
 
   function saveReply(answer) {
@@ -70,10 +70,14 @@ function Survey() {
   const { data, isLoading, error } = useFetch(`http://localhost:8000/survey`)
   const { surveyData } = data
 
+  if (error) {
+    return <span>Il y a un problème</span>
+  }
+
   return (
     <SurveyContainer>
       <QuestionTitle>Question {questionNumber}</QuestionTitle>
-      {isDataLoading ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <QuestionContent>
